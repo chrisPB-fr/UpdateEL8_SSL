@@ -11,7 +11,7 @@ PATH_RPM="/root/rpmbuild/SOURCES"
 OPENSSH_SPEC="${PATH_RPM}/openssh-${version}/contrib/redhat/openssh.spec"
 
 function check_version_ssh () {
-check_version=`rpm -qa |grep openssh-server |awk -F"-" '{print $3}'`
+check_version=`rpm -qa |grep openssh-server |awk -F"-" '{print $3}'|head -1`
 if [ ${check_version} == ${version} ]
 then
 echo ""
@@ -187,56 +187,57 @@ echo -e "${vert}##########################################${neutre}"
 echo -e "${vert}  Etape 2 - installation des dépendances  ${neutre}"
 echo -e "${vert}##########################################${neutre}"
 sleep 2
-install_dependance
+#install_dependance
 
 clear
 echo -e "${vert}##########################################${neutre}"
 echo -e "${vert}   Etape 3 -  Récupération des sources    ${neutre}"
 echo -e "${vert}##########################################${neutre}"
 sleep 2
-recup_source
+#recup_source
 
 clear
 echo -e "${vert}##########################################${neutre}"
 echo -e "${vert}  Etape 4 -  Préparation du fichier spec  ${neutre}"
 echo -e "${vert}##########################################${neutre}"
 sleep 2
-prepa_spec
+#prepa_spec
 
 clear
 echo -e "${vert}########################################${neutre}"
 echo -e "${vert}  Etape 5 -  Ajustement du fichier spec ${neutre}"
 echo -e "${vert}########################################${neutre}"
 sleep 2
-ajust_spec
+#ajust_spec
 
 clear
 echo -e "${vert}#################################################${neutre}"
 echo -e "${vert}  Etape 6 -  Création des RPM OpenSSL ${version} ${neutre}"
 echo -e "${vert}#################################################${neutre}"
 sleep 2
-create_RPM
+#create_RPM
 
 clear
 echo -e "${vert}######################################################${neutre}"
 echo -e "${vert}  Etape 7 -  installation des  RPM OpenSSL ${version} ${neutre}"
 echo -e "${vert}######################################################${neutre}"
 sleep 2
-install_RPM
+#install_RPM
 
 clear
 echo -e "${vert}######################################${neutre}"
 echo -e "${vert}  Etape 8 -  Ouverture root acces SSH ${neutre}"
 echo -e "${vert}######################################${neutre}"
 sleep 2
-autorise_root_acces
+#autorise_root_acces
 
 clear
 echo -e "${vert}#############################################${neutre}"
 echo -e "${vert}  Etape 9 - Activation authentification  PAM ${neutre}"
 echo -e "${vert}#############################################${neutre}"
 sleep 2
-activation_pam
+#activation_pam
+sleep 10
 
 clear
 echo -e "${vert}###########################################${neutre}"
@@ -245,7 +246,7 @@ echo -e "${vert}###########################################${neutre}"
 sleep 2
 check_host_rsa_key
 
-clear
+#clear
 echo -e "${vert}############################################${neutre}"
 echo -e "${vert}  Etape Finale - Redémarrage du service SSH ${neutre}"
 echo -e "${vert}############################################${neutre}"
