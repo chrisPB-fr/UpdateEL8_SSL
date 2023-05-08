@@ -247,8 +247,7 @@ echo -e "${vert}#############################################${neutre}"
 echo -e "${vert}  Etape 9 - Activation authentification  PAM ${neutre}"
 echo -e "${vert}#############################################${neutre}"
 sleep 2
-#activation_pam
-sleep 10
+activation_pam
 
 clear
 echo -e "${vert}###########################################${neutre}"
@@ -263,4 +262,5 @@ echo -e "${vert}  Etape Finale - Redémarrage du service SSH ${neutre}"
 echo -e "${vert}############################################${neutre}"
 sleep 2
 restart_sshd
+ssh -V
 
