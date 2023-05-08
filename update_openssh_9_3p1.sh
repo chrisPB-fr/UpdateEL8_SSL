@@ -187,49 +187,49 @@ echo -e "${vert}##########################################${neutre}"
 echo -e "${vert}  Etape 2 - installation des dépendances  ${neutre}"
 echo -e "${vert}##########################################${neutre}"
 sleep 2
-#install_dependance
+install_dependance
 
 clear
 echo -e "${vert}##########################################${neutre}"
 echo -e "${vert}   Etape 3 -  Récupération des sources    ${neutre}"
 echo -e "${vert}##########################################${neutre}"
 sleep 2
-#recup_source
+recup_source
 
 clear
 echo -e "${vert}##########################################${neutre}"
 echo -e "${vert}  Etape 4 -  Préparation du fichier spec  ${neutre}"
 echo -e "${vert}##########################################${neutre}"
 sleep 2
-#prepa_spec
+prepa_spec
 
 clear
 echo -e "${vert}########################################${neutre}"
 echo -e "${vert}  Etape 5 -  Ajustement du fichier spec ${neutre}"
 echo -e "${vert}########################################${neutre}"
 sleep 2
-#ajust_spec
+ajust_spec
 
 clear
 echo -e "${vert}#################################################${neutre}"
 echo -e "${vert}  Etape 6 -  Création des RPM OpenSSL ${version} ${neutre}"
 echo -e "${vert}#################################################${neutre}"
 sleep 2
-#create_RPM
+create_RPM
 
 clear
 echo -e "${vert}######################################################${neutre}"
 echo -e "${vert}  Etape 7 -  installation des  RPM OpenSSL ${version} ${neutre}"
 echo -e "${vert}######################################################${neutre}"
 sleep 2
-#install_RPM
+install_RPM
 
 clear
 echo -e "${vert}######################################${neutre}"
 echo -e "${vert}  Etape 8 -  Ouverture root acces SSH ${neutre}"
 echo -e "${vert}######################################${neutre}"
 sleep 2
-#autorise_root_acces
+autorise_root_acces
 
 clear
 echo -e "${vert}#############################################${neutre}"
