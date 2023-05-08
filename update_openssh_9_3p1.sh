@@ -28,7 +28,7 @@ VERSION=`cat /etc/os-release |grep VERSION_ID |awk -F"=" '{print $2}'|cut -c 2`
 if [ ${VERSION} == 7 ]
 then
         echo "Installation du paquet dnf"
-        dnf -y install dnf >> /dev/null
+        yum -y install dnf >> /dev/null
         echo "Installation du paquet imake"
         yum install imake -y >> /dev/null
 else
