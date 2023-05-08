@@ -134,7 +134,7 @@ done
 
 if [ ${reponse} == yes ] || [ ${reponse} == y ] 
 then
-	check_acces_root=`cat /etc/ssh/sshd_config |grep "PermitRootLogin prohibit-password" |wc -l`
+	check_acces_root=`cat /etc/ssh/sshd_config |grep "#PermitRootLogin prohibit-password" |wc -l`
 	if [ ${check_acces_root} == 1 ]
 	then
 		sed -i 's/prohibit-password/yes/'  /etc/ssh/sshd_config
@@ -152,7 +152,7 @@ fi
 }
 
 function activation_pam () {
-	check_pam_actif=`cat /etc/ssh/sshd_config |grep "#UsePAM yes" |wc -l`
+	check_pam_actif=`cat /etc/ssh/sshd_config |grep "#UsePAM no" |wc -l`
 	if [ ${check_pam_actif} == 1 ]
 	then
 		sed -i 's/#UsePAM no/UsePAM yes/'  /etc/ssh/sshd_config
