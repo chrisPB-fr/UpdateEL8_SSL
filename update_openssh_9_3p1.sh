@@ -24,14 +24,25 @@ echo "Votre version est la ${check_version}"
 }
 
 function install_dependance () {
+VERSION=`cat /etc/os-release |grep VERSION_ID |awk -F"=" '{print $2}'|cut -c 2`
+if [ ${VERSION} == 7 ]
+then
+        echo "Installation du paquet dnf"
+        dnf -y install dnf >> /dev/null
+        echo "Installation du paquet imake"
+        yum install imake -y >> /dev/null
+else
+        echo "Installation du paquet imake"
+        dnf --enablerepo=powertools install imake -y >> /dev/null
+
+fi
 for install_packet in pam-devel rpm-build rpmdevtools zlib-devel openssl-devel krb5-devel gcc wget gtk2-devel libXt-devel libX11-devel perl
 do
-	echo "Installation du paquet ${install_packet}"
-	dnf -y install ${install_packet} >> /dev/null
+        echo "Installation du paquet ${install_packet}"
+        dnf -y install ${install_packet} >> /dev/null
 done
-echo "Installation du paquet imake"
-dnf --enablerepo=powertools install imake -y >> /dev/null
 }
+
 
 function recup_source () {
 ## Source OpenSSH
