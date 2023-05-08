@@ -52,20 +52,20 @@ if [ -f ${PATH_RPM}/openssh-${version}.tar.gz ]
 then 
 	rm -f ${PATH_RPM}/openssh-${version}.tar.gz
 	echo "Récupère les sources de openssh-${version}"
-	wget c ${openSSH_repo}/openssh-${version}.tar.gz -P ${PATH_RPM}
+	wget --no-check-certificate ${openSSH_repo}/openssh-${version}.tar.gz -P ${PATH_RPM}
 else
 	echo "Récupère les sources de openssh-${version}"
-	wget -c ${openSSH_repo}/openssh-${version}.tar.gz -P ${PATH_RPM} 
+	wget --no-check-certificate ${openSSH_repo}/openssh-${version}.tar.gz -P ${PATH_RPM} 
 fi
 
 if [ -f ${PATH_RPM}/openssh-${version}.tar.gz.asc ]
 then
 	rm -f ${PATH_RPM}/openssh-${version}.tar.gz.asc
 	echo "Récupère les clefs de openssh-${version}"
-	wget -c ${openSSH_repo}/openssh-${version}.tar.gz.asc -P ${PATH_RPM}
+	wget --no-check-certificate ${openSSH_repo}/openssh-${version}.tar.gz.asc -P ${PATH_RPM}
 else
 	echo "Récupère les clefs de openssh-${version}"
-	wget -c ${openSSH_repo}/openssh-${version}.tar.gz.asc -P${PATH_RPM} 
+	wget --no-check-certificate ${openSSH_repo}/openssh-${version}.tar.gz.asc -P${PATH_RPM} 
 fi
 
 ## Source askpass
@@ -73,10 +73,10 @@ if [ -f ${PATH_RPM}/x11-ssh-askpass-1.2.4.1.tar.gz ]
 then
 	rm -f  ${PATH_RPM}/x11-ssh-askpass-1.2.4.1.tar.gz
 	echo "Récupère les sources x11-ssh-askpass"
-	wget -c ${askPass_repo}/x11-ssh-askpass-1.2.4.1.tar.gz -P ${PATH_RPM} 
+	wget --no-check-certificate ${askPass_repo}/x11-ssh-askpass-1.2.4.1.tar.gz -P ${PATH_RPM} 
 else
         echo "Récupère les sources x11-ssh-askpass"
-        wget -c ${askPass_repo}/x11-ssh-askpass-1.2.4.1.tar.gz -P ${PATH_RPM}
+        wget --no-check-certificate ${askPass_repo}/x11-ssh-askpass-1.2.4.1.tar.gz -P ${PATH_RPM}
 fi
 
 }
