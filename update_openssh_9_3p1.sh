@@ -152,7 +152,7 @@ fi
 }
 
 function activation_pam () {
-	check_pam_actif=`cat /etc/ssh/sshd_config |grep "#UsePAM no" |wc -l`
+	check_pam_actif=`cat /etc/ssh/sshd_config |grep "UsePAM no" |wc -l`
 	if [ ${check_pam_actif} == 1 ]
 	then
 		sed -i 's/#UsePAM no/UsePAM yes/'  /etc/ssh/sshd_config
