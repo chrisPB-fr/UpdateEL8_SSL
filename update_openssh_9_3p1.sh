@@ -25,6 +25,7 @@ echo "Votre version est la ${check_version}"
 
 function install_dependance () {
 VERSION=`cat /etc/os-release |grep VERSION_ID |awk -F"=" '{print $2}'|cut -c 2`
+DISTRIB=`cat /etc/os-release |grep -w ID= |awk -F"\"" '{print $2}'`
 if [ ${VERSION} == 7 ]
 then
         echo "Installation du paquet dnf"
@@ -32,8 +33,14 @@ then
         echo "Installation du paquet imake"
         yum install imake -y >> /dev/null
 else
-        echo "Installation du paquet imake"
-        dnf --enablerepo=powertools install imake -y >> /dev/null
+	if [ ${DISTRIB} == "centos" ] && [ ${DISTRIB} == "rocky" ] && [ ${DISTRIB} == "almalinux" ]
+	then
+        	echo "Installation du paquet imake pour ${DISTRIB}"
+        	dnf --enablerepo=powertools install imake -y >> /dev/null
+	else 
+		echo "Installation du paquet imake pour ${DISTRIB}"
+		rpm -Uvh https://vault.centos.org/centos/8/PowerTools/x86_64/os/Packages/imake-1.0.7-11.el8.x86_64.rpm >> /dev/null
+	fi
 
 fi
 for install_packet in pam-devel rpm-build rpmdevtools zlib-devel openssl-devel krb5-devel gcc wget gtk2-devel libXt-devel libX11-devel perl
@@ -148,6 +155,10 @@ echo ""
 echo -e "${vert}#####################################${neutre}"
 echo -e "${vert}   Root Acces est désormais activé   ${neutre}" 
 echo -e "${vert}#####################################${neutre}"
+echo ""
+cat /etc/ssh/sshd_config | grep PermitRootLogin
+echo ""
+cat /etc/ssh/sshd_config | grep UsePAM
 fi
 }
 
