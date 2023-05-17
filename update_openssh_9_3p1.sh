@@ -10,6 +10,22 @@ neutre='\e[0;m'
 PATH_RPM="/root/rpmbuild/SOURCES"
 OPENSSH_SPEC="${PATH_RPM}/openssh-${version}/contrib/redhat/openssh.spec"
 
+function check_internet () {
+wget -q --tries=10 --timeout=20 --spider http://google.com
+if [ $? != 0 ]
+then
+	echo ""
+	echo -e "${rouge}#########################################${neutre}"
+	echo -e "${rouge}                                         ${neutre}"
+	echo -e "${rouge}  Vous n'avez pas d'accès Internet       ${neutre}"
+	echo -e "${rouge}                                         ${neutre}"
+	echo -e "${rouge}  - Vérifier votre connexion Internet -  ${neutre}"
+	echo -e "${rouge}                                         ${neutre}"
+	echo -e "${rouge}#########################################${neutre}"
+	sleep 2
+	exit
+fi
+}
 function check_version_ssh () {
 check_version=`rpm -qa |grep openssh-server |awk -F"-" '{print $3}'|head -1`
 if [ ${check_version} == ${version} ]
@@ -194,6 +210,7 @@ echo -e "${vert}############################${neutre}"
 echo -e "${vert}  Mise à jour de OpenSSL    ${neutre}"
 echo -e "${vert}############################${neutre}"
 sleep 2
+check_internet
 
 clear
 echo ""
